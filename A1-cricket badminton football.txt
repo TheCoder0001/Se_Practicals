@@ -1,0 +1,100 @@
+PROBLEM STATEMENT : In second year computer engineering class, group A student's play cricket, group B students play badminton and group C students play football.
+Write a Python program using functions to compute following:
+a) List of students who play both cricket and badminton
+b) List of students who play either cricket or badminton but not both
+c) Number of students who play neither cricket nor badminton
+d) Number of students who play cricket and football but not badminton.
+
+PROGRAM :  
+
+cricketPlayers = []
+badmintonPlayers = []
+footballPlayers = []
+def cricketInput():
+
+    total = int(input("Total number of CRICKET players:"))
+    for i in range(total):
+        players = int(input(f"Roll number of player {i+1}:"))
+        cricketPlayers.append(players)
+    print(f"\nStudents playing cricket: {cricketPlayers}")
+
+def badmintonInput():
+    total = int(input("Total number of BADMINTON players:"))
+    for i in range(total):
+        players = int(input(f"Roll number of player {i+1}:"))
+        badmintonPlayers.append(players)
+    print(f"\nStudents playing badminton: {badmintonPlayers}")
+
+def footballInput():
+    total = int(input("Total number of FOOTBALL players:"))
+    for i in range(total):
+        players = int(input(f"Roll number of player {i+1}:"))
+        footballPlayers.append(players)
+    print(f"\nStudents playing football: {footballPlayers}")
+
+def CricketAndBadminton():
+    listCricketAndBadminton = []
+    for i in cricketPlayers:
+        if i in badmintonPlayers:
+            listCricketAndBadminton.append(i)
+    print(f"\nStudents playing cricket and badminton: {listCricketAndBadminton}")
+
+def CricketOrBadminton():
+    listCricketOrBadminton = []
+    for i in cricketPlayers:
+        if i not in badmintonPlayers:
+            listCricketOrBadminton.append(i)
+    for i in badmintonPlayers:
+        if i not in cricketPlayers:
+            listCricketOrBadminton.append(i)
+    print(f"\nStudents playing cricket or badminton (but not both): {listCricketOrBadminton}")
+
+def FootballOnly():
+    listCricketAndBadminton = []
+    listFootballOnly = []
+    for i in cricketPlayers:
+        listCricketAndBadminton.append(i)
+    for i in badmintonPlayers:
+        if i not in cricketPlayers:
+            listCricketAndBadminton.append(i)
+    for i in footballPlayers:
+        if i not in listCricketAndBadminton:
+            listFootballOnly.append(i)
+    print(f"\nTotal students playing football only are:{len(listFootballOnly)}\nList:{listFootballOnly}")
+
+def notBadminton():
+    listNotBadminton = []
+    for i in cricketPlayers:
+        if i in footballPlayers:
+            if i not in badmintonPlayers:
+                listNotBadminton.append(i)
+    print(f"\nTotal students not playing badminton (but do play cricket and football):\t{len(listNotBadminton)}\nList:\t{listNotBadminton}")
+
+def main():    
+    print("ENTER ROLL NUMBERS IN LIST\n")
+    cricketInput()
+    badmintonInput()
+    footballInput()
+    print("\nROLL NUMBERS SAVED ")
+    while (1):
+        print("\n----- MAIN MENU -----")
+        print("1 : Students playing both cricket and badminton")
+        print("2 : Students playing either cricket or badminton, but not both")
+        print("3 : Students playing neither cricket nor badminton (i.e. football only)")
+        print("4 : Students playing cricket and football, but not badminton")
+        print("5 : Exit")
+        optn = int(input("Choose an option (1-5):\t"))
+        if (optn == 1):
+            CricketAndBadminton()
+        elif (optn == 2):
+            CricketOrBadminton()
+        elif (optn == 3):
+            FootballOnly()
+        elif (optn == 4):
+            notBadminton()
+        elif (optn ==5):
+            print("\nEND OF CODE")
+            quit()
+        else:
+            print("\nPlease choose a valid option (1-5)")
+main()
