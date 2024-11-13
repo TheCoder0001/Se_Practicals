@@ -4,16 +4,26 @@ PROBLEM STATEMENT: Pizza parlor accepting maximum M orders. Orders are served in
 
 #include <iostream>
 using namespace std;
+
 class Pizza {
     int front, rear, q[5];
 public:
     Pizza() : front(-1), rear(-1) {}
+
     bool isFull() {
-        return (front == 0 && rear == 4) || (front == rear + 1);
+        if ((front == 0 && rear == 4) || (front == rear + 1)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     bool isEmpty() {
-        return front == -1 && rear == -1;
+        if (front == -1 && rear == -1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     void add() {
@@ -82,4 +92,3 @@ int main() {
     p.menu();
     return 0;
 }
-
