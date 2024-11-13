@@ -6,29 +6,42 @@ CODE :
 #define MAX_ARR_SIZE 30
 using namespace std;
 
-
 int VAR_VALS[58] = {0};
 int VAR_COUNT = 0;
 bool IS_VAL_SET = false;
 
-
 class char_stack {
     char list[MAX_ARR_SIZE];
 
-   public:
+public:
     int top;
     char_stack() { top = -1; }
-    bool isempty() { return (top <= -1) ? true : false; }
-    bool isfull() { return (top == MAX_ARR_SIZE - 1) ? true : false; }
+    bool isempty() {
+        if (top <= -1)
+            return true;
+        else
+            return false;
+    }
+    bool isfull() {
+        if (top == MAX_ARR_SIZE - 1)
+            return true;
+        else
+            return false;
+    }
     void push(char elmt) {
-        if (not isfull()) {
+        if (!isfull()) {
             top++;
             list[top] = elmt;
         }
     }
-    char peek() { return (top != -1) ? list[top] : ' '; }
+    char peek() {
+        if (top != -1)
+            return list[top];
+        else
+            return ' ';
+    }
     char pop() {
-        if (not isempty()) {
+        if (!isempty()) {
             top--;
             return list[top + 1];
         }
@@ -39,19 +52,29 @@ class char_stack {
 class stack {
     int list[MAX_ARR_SIZE];
 
-   public:
+public:
     int top;
     stack() { top = -1; }
-    bool isempty() { return (top <= -1) ? true : false; }
-    bool isfull() { return (top == MAX_ARR_SIZE - 1) ? true : false; }
+    bool isempty() {
+        if (top <= -1)
+            return true;
+        else
+            return false;
+    }
+    bool isfull() {
+        if (top == MAX_ARR_SIZE - 1)
+            return true;
+        else
+            return false;
+    }
     void push(int elmt) {
-        if (not isfull()) {
+        if (!isfull()) {
             top++;
             list[top] = elmt;
         }
     }
     int pop() {
-        if (not isempty()) {
+        if (!isempty()) {
             top--;
             return list[top + 1];
         }
