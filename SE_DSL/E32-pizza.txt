@@ -1,0 +1,85 @@
+
+PROBLEM STATEMENT: Pizza parlor accepting maximum M orders. Orders are served in first come first served basis. Order once placed cannot be cancelled. Write C++ program to simulate the system using circular queue using array.
+
+
+#include <iostream>
+using namespace std;
+class Pizza {
+    int front, rear, q[5];
+public:
+    Pizza() : front(-1), rear(-1) {}
+    bool isFull() {
+        return (front == 0 && rear == 4) || (front == rear + 1);
+    }
+
+    bool isEmpty() {
+        return front == -1 && rear == -1;
+    }
+
+    void add() {
+        if (!isFull()) {
+            cout << "\nEnter the Pizza ID: ";
+            if (isEmpty()) {
+                front = rear = 0;
+            } else {
+                rear = (rear + 1) % 5;
+            }
+            cin >> q[rear];
+            char c;
+            cout << "Do you want to add another order? (y/n): ";
+            cin >> c;
+            if (c == 'y' || c == 'Y') add();
+        } else {
+            cout << "\nOrders are full.";
+        }
+    }
+
+    void serve() {
+        if (!isEmpty()) {
+            cout << "\nOrder served: " << q[front];
+            if (front == rear) {
+                front = rear = -1; // Reset queue
+            } else {
+                front = (front + 1) % 5;
+            }
+        } else {
+            cout << "\nOrders are empty.";
+        }
+    }
+
+    void display() {
+        if (!isEmpty()) {
+            cout << "\nCurrent orders: ";
+            for (int i = front; i != rear; i = (i + 1) % 5) {
+                cout << q[i] << " <- ";
+            }
+            cout << q[rear];
+        } else {
+            cout << "\nOrders are empty.";
+        }
+    }
+
+    void menu() {
+        int choice;
+        do {
+            cout << "\n\n-----PIZZA PARLOUR-----\n";
+            cout << "\n1. Add a Pizza\n2. Display Orders\n3. Serve a Pizza\n4. Exit\nEnter your choice: ";
+            cin >> choice;
+
+            switch (choice) {
+                case 1: add(); break;
+                case 2: display(); break;
+                case 3: serve(); break;
+                case 4: exit(0);
+                default: cout << "Invalid choice.";
+            }
+        } while (choice != 4);
+    }
+};
+
+int main() {
+    Pizza p;
+    p.menu();
+    return 0;
+}
+
