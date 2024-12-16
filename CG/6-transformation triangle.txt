@@ -1,0 +1,136 @@
+#include<iostream>
+#include<graphics.h>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+    int gd = DETECT,gm;
+    initgraph(&gd, &gm, NULL);
+    float x1,y1,x2,y2,x3,y3;
+    float a[3][3];
+    cout<<"Enter x and y coordinates of 1st point: ";
+    cin>>x1>>y1;
+    cout<<"Enter x and y coordinates of 2nd point: ";
+    cin>>x2>>y2;
+    float angle1 = 60*(3.14/180);
+    x3 = x1 + (x2-x1)*cos(angle1) + (y2-y1)*sin(angle1);
+    y3 = y1 - (x2-x1)*sin(angle1) + (y2-y1)*cos(angle1);
+    a[2][0] = a[2][1] = a[2][2] = 1;
+    a[0][0] = x1;
+    a[0][1] = x2;
+    a[0][2] = x3;
+    a[1][0] = y1;
+    a[1][1] = y2;
+    a[1][2] = y3;
+    line(a[0][0],a[1][0],a[0][1],a[1][1]);
+    line(a[0][1],a[1][1],a[0][2],a[1][2]);
+    line(a[0][2],a[1][2],a[0][0],a[1][0]);
+    delay(1000);
+    int choice;
+    bool flag = true;
+    while(flag)
+    {
+        cout<<"\n****YOUR CHOICES ARE****\n";
+        cout<<"\n1. Translation \n2. Scaling \n3. Rotation \n4. Exit";
+        cout<<"\nEnter choice: ";
+        cin>>choice;
+        switch(choice)
+        {
+        case 1:
+            {
+                float b[3][3],c[3][3],tx,ty;
+                b[0][0] = b[1][1] = b[2][2] = 1;
+                b[0][1] = b[1][0] = b[2][0] = b[2][1] = 0;
+                cout<<"\nEnter values of tx and ty: ";
+                cin>>tx>>ty;
+                b[0][2] = tx;
+                b[1][2] = ty;
+                for(int i = 0; i<3; i++)
+                {
+                    for(int j = 0; j<3; j++)
+                    {
+                        c[i][j] = 0;
+                        for(int k = 0; k<3; k++)
+                        {
+                            c[i][j] += b[i][k]*a[k][j];
+                        }
+                    }
+                }
+                setcolor(BROWN);
+                line(c[0][0],c[1][0],c[0][1],c[1][1]);
+                line(c[0][1],c[1][1],c[0][2],c[1][2]);
+                line(c[0][2],c[1][2],c[0][0],c[1][0]);
+                delay(1000);
+            }
+            break;
+
+        case 2:
+            {
+                float b[3][3],c[3][3],sx,sy;
+                cout<<"\nEnter values of sx and sy: ";
+                cin>>sx>>sy;
+                b[2][2] = 1;
+                b[0][1] = b[0][2] = b[1][0] = b[1][2] = b[2][0] = b[2][1] = 0;
+                b[0][0] = sx;
+                b[1][1] = sy;
+                for(int i = 0; i<3; i++)
+                {
+                    for(int j = 0; j<3; j++)
+                    {
+                        c[i][j] = 0;
+                        for(int k = 0; k<3; k++)
+                        {
+                            c[i][j] += b[i][k]*a[k][j];
+                        }
+                    }
+                }
+                setcolor(BLUE);
+                line(c[0][0],c[1][0],c[0][1],c[1][1]);
+                line(c[0][1],c[1][1],c[0][2],c[1][2]);
+                line(c[0][2],c[1][2],c[0][0],c[1][0]);
+                delay(1000);
+            }
+            break;
+
+        case 3:
+            {
+                float b[3][3],c[3][3],angle,z;
+                cout<<"\nEnter angle(in degrees): ";
+                cin>>angle;
+                z = angle*(3.14/180);
+                b[0][0] = b[1][1] = cos(z);
+                b[0][1] = sin(z);
+                b[1][0] = (-sin(z));
+                b[2][2] = 1;
+                b[0][2] = b[1][2] = b[2][0] = b[2][1] = 0;
+                for(int i = 0; i<3; i++)
+                {
+                    for(int j = 0; j<3; j++)
+                    {
+                        c[i][j] = 0;
+                        for(int k = 0; k<3; k++)
+                        {
+                            c[i][j] += b[i][k]*a[k][j];
+                        }
+                    }
+                }
+                setcolor(RED);
+                line(c[0][0],c[1][0],c[0][1],c[1][1]);
+                line(c[0][1],c[1][1],c[0][2],c[1][2]);
+                line(c[0][2],c[1][2],c[0][0],c[1][0]);
+                delay(1000);
+            }
+            break;
+
+        case 4:
+            flag = false;
+            break;
+
+        default:
+            cout<<"\nINVALID CHOICE!!!\n";
+            break;
+        }
+    }
+    return 0;
+}

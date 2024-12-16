@@ -1,0 +1,72 @@
+/*
+1. #include<GL/glut.h>
+This includes the GLUT (OpenGL Utility Toolkit) header file, which provides functions for creating windows, handling input, and interacting with OpenGL.
+
+2. void mydisplay()
+This function contains the rendering logic for the cube.
+
+glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); Clears the screen and depth buffer to prepare for rendering the next frame.
+
+glLoadIdentity(); Resets the current transformation matrix to the identity matrix.
+
+glTranslatef(0.0, 0.0, -5.0); Moves the entire scene 5 units away along the Z-axis to ensure it is visible within the perspective view.
+
+glRotatef(20.0, 1.0, 0.0, 0.0); Rotates the scene 20 degrees about the X-axis to tilt the cube slightly, so more than one face is visible.
+
+glBegin(GL_QUADS); Begins drawing quadrilaterals (4-sided polygons).
+
+For each face of the cube:
+glColor3f(r, g, b); Sets the color for the vertices of the face using RGB values.
+glVertex3f(x, y, z); Specifies the 3D coordinates of each vertex of the face.
+The cube is composed of 6 faces, each given a unique color (red, green, blue, yellow, cyan, magenta).
+
+glEnd(); Ends the quadrilateral drawing process.
+
+glFlush(); Ensures all OpenGL commands are executed immediately.
+
+3. void init()
+This function sets up the initial OpenGL state.
+
+glClearColor(0.0, 0.0, 0.0, 1.0); Sets the background color to black.
+
+glEnable(GL_DEPTH_TEST); Enables depth testing, which ensures proper rendering of 3D objects based on their depth.
+
+4. void reshape(int w, int h)
+This function adjusts the viewport and projection when the window is resized.
+
+glViewport(0, 0, w, h); Specifies the area of the window to render (entire window in this case).
+
+glMatrixMode(GL_PROJECTION); Switches to the projection matrix, which controls the camera's view.
+
+glLoadIdentity(); Resets the projection matrix.
+
+gluPerspective(60, 1, 2.0, 50.0); Sets up a perspective projection:
+
+Field of view: 60 degrees.
+Aspect ratio: 1 (square viewport).
+Near clipping plane: 2.0.
+Far clipping plane: 50.0.
+glMatrixMode(GL_MODELVIEW); Switches back to the model-view matrix for subsequent transformations.
+
+5. int main(int argc, char** argv)
+The main function initializes GLUT and starts the rendering loop.
+
+glutInit(&argc, argv); Initializes GLUT with command-line arguments.
+
+glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH); Sets the display mode to use RGB color and enable depth buffering.
+
+glutInitWindowPosition(100, 100); Sets the initial window position on the screen.
+
+glutInitWindowSize(500, 500); Sets the initial window size (500x500 pixels).
+
+glutCreateWindow("3D transformations"); Creates a window with the title "3D transformations".
+
+glutDisplayFunc(mydisplay); Registers the mydisplay function as the display callback, which is called whenever the window needs to be redrawn.
+
+glutReshapeFunc(reshape); Registers the reshape function to handle window resizing.
+
+init(); Calls the initialization function.
+
+glutMainLoop(); Enters the GLUT event loop, which waits for events (like redraw requests) and dispatches them to the appropriate callback functions.
+
+*/
