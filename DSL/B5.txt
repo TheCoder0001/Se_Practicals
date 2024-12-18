@@ -1,0 +1,82 @@
+# PROGRAM STATEMENT : B5 : Write a Python program to compute following operations on String:
+#  a) To display word with the longest length 
+# b) To determines the frequency of occurrence of particular character in the string 
+# c) To check whether given string is palindrome or not 
+# d) To display index of first appearance of the substring 
+# e) To count the occurrences of each word in a given string
+
+# PROGRAM:
+string=input("enter string : ")
+sub=input("Enter substring :")
+char=input("Enter char whose occurance is to be checked : ")
+occ=string.split()
+index=[]
+
+for i in occ:
+    for j in occ:
+        if(i==j and j not in index):
+            index.append(i)
+
+def longest():
+    max=""
+    words=string.split()
+    for word in words:
+        if(len(word)>len(max)):
+            max=word
+    print("longest word is",max)    
+        
+
+def charfreq():
+    count=0
+    for i in string:
+        if(i==char):
+            count+=1
+    print(count)
+    
+def palindrom():
+    str=string
+    if(string[::-1]==str):
+        print("palimdrom")
+    else:
+        print("not palindrom")
+
+def substringindex():
+    if sub in string:
+        print("substring present at",string.find(sub))
+    else:
+        print("substring not present")
+    
+def occurance():
+    for i in index:
+        count=0
+        for j in occ:
+            
+            if(i==j):
+                count+=1
+        print(f"occurance of {i} in string is ",count,"times")
+
+def main():
+    while(1):
+        print("menu")
+        print("1.longest word")
+        print("2.freq occurance of char")
+        print("3.check palindrom")
+        print("4.index of substring")
+        print("5.occurance of each word")
+        
+        ch=int(input("\nenter choice : "))
+        if(ch==1):
+            longest()
+        elif(ch==2):
+            charfreq()
+        elif(ch==3):
+            palindrom()
+        elif(ch==4):
+            substringindex()
+        elif(ch==5):
+            occurance()
+        else:
+            print("invalid choice")
+            exit()
+        
+main()
