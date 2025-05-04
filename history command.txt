@@ -1,0 +1,18 @@
+sudo su
+
+
+sudo dmesg -C
+
+
+
+dmesg | grep -i usb
+
+
+
+mv filename .filename
+
+
+history -c
+
+
+rm ~/.bash_history
