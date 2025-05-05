@@ -74,7 +74,7 @@ class GT{
 							
 							for(int k=0;k<root->child[i]->child[j]->ch_count;k++){
 								cout<<"\t\t\t"<< i+1 <<" - "<< j+1<< " - "<< k+1<< " Name of sub-section: ";
-								cout<<root->child[i]->child[j]->label<<endl;
+								cout<<root->child[i]->child[j]->child[k]->label<<endl;
 							}
 						}
 			}
